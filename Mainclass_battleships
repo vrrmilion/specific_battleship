@@ -1,3 +1,4 @@
+<?php
 
 class Mainclass_battleships
 {
@@ -262,6 +263,9 @@ class morBoy{
                         <h2>"._('Welcome to ballteship`s')."</h2>
                         <div class='game-description'>"._('You can`t do much here, just press the button to make turn')."</div>
                         <div class='btn btn-primary btn-fire'>"._('Файйаа')."</div>
+                        <div class='battle-log'>
+                            
+                        </div>
                     </div>";
                 echo "</div>";
                 echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>";
@@ -287,16 +291,19 @@ class morBoy{
                                 //unhitted ship
                                 $('.board [data-x=\"' + pos_x + '\"][data-y=\"' + pos_y + '\"]').data('status', 'hit').addClass('hit').removeClass('ship');
                                 turn_accepted = 'yes';
+                                result_text = 'Hit!!!'
                                 checkEndOfGame();
                             }else if(cell_status == ''){
                                 //empty cell
                                 $('.board [data-x=\"' + pos_x + '\"][data-y=\"' + pos_y + '\"]').data('status', 'hit-empty').addClass('hit-empty').removeClass('ship');
                                  turn_accepted = 'yes';
+                                 result_text = 'Missed'
                                  checkEndOfGame();
                             }else{
                                  turn_accepted = 'no';
                             }
                         }    
+                        $('.battle-log').append('<div>Move x:' + pos_x + ', y:' + pos_y + ' - ' + result_text + '</div>');
                     }
                     
                     function checkEndOfGame(){
